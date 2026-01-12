@@ -2,14 +2,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class JavaSlotMachine {
+    static Random random  = new Random();
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        Random random  = new Random();
+
 
         int balance = 1000;
         int bet;
         int payout;
-        String[] symbols = {"🦀" , "🐍" , "🐳" , "🦄" , "🕊️" };
+        String[] row;
+
 
         while(balance > 0) {
 
@@ -27,12 +29,25 @@ public class JavaSlotMachine {
                 balance -= bet;
             };
 
+            System.out.println("Spinning.......");
+            row = spinrow();
+
+
 
 
 
         }
+    }
 
+    static String[] spinrow(){
 
+        String[] symbols = {"🦀" , "🐍" , "🐳" , "🦄" , "🕊️" };
+        String[] row = new String[3];
 
+        for(int i =0 ; i < 3 ; i++){
+            row[i] = symbols[random.nextInt(symbols.length)];
+        }
+
+        return row;
     }
 }
