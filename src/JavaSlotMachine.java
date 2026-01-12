@@ -32,9 +32,7 @@ public class JavaSlotMachine {
             System.out.println("Spinning.......");
             row = spinrow();
             displayRow(row);
-
-
-
+            payout(row , bet);
 
 
         }
