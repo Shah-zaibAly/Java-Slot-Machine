@@ -31,6 +31,7 @@ public class JavaSlotMachine {
 
             System.out.println("Spinning.......");
             row = spinrow();
+            displayRow(row);
 
 
 
@@ -49,5 +50,8 @@ public class JavaSlotMachine {
         }
 
         return row;
+    }
+    static void displayRow(String[] row){
+        System.out.println(" " + String.join(" | " , row));
     }
 }
