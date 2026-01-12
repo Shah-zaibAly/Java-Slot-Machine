@@ -11,13 +11,17 @@ public class JavaSlotMachine {
         int bet;
         int payout;
         String[] row;
+        String playagain = "yes";
+        String userChoice = "";
 
+        displayTitle();
 
         while(balance > 0) {
 
             System.out.println("you current balance :" + balance);
             System.out.print("Enter your bet :");
             bet = scanner.nextInt();
+            scanner.nextLine();
 
             if(bet > balance){
                 System.out.println("Not enough funds bud!");
@@ -32,12 +36,33 @@ public class JavaSlotMachine {
             System.out.println("Spinning.......");
             row = spinrow();
             displayRow(row);
-            payout(row , bet);
+            payout = payout(row , bet);
+
+            if(payout > 0){
+                System.out.println("You won $" + payout);
+                balance += payout;
+            }else{
+                System.out.println("Sorry you lost this round.");
+                System.out.println("Wanna play again?    (yes/no)");
+                userChoice = scanner.nextLine();
+            }
+
+            if(!playagain.equalsIgnoreCase(userChoice)){
+                break;
+            }
 
 
         }
     }
 
+    static void displayTitle() {
+        System.out.println("######################################");
+        System.out.println("#                                    #");
+        System.out.println("#        JAVA SLOT MACHINE            #");
+        System.out.println("#        Spin • Win • Repeat          #");
+        System.out.println("#                                    #");
+        System.out.println("######################################");
+    }
     static String[] spinrow(){
 
         String[] symbols = {"🦀" , "🐍" , "🐳" , "🦄" , "🕊️" };
@@ -80,7 +105,8 @@ public class JavaSlotMachine {
                 case "🕊️" -> bet * 10;
                 default -> 0;
             };
+        }else{
+            return 0;
         }
-        return 0;
     }
 }
